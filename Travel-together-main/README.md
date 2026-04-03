@@ -66,7 +66,7 @@ The backend server provides the necessary data and functionality for the Coopera
 
 The live version of Cooperative Bridge 6636 is deployed on Netlify. You can access the application through the following link:
 
-**Netlify Link**: [stirring-pasca-16e422.netlify.app/](stirring-pasca-16e422.netlify.app)
+**Netlify Link**: [**Netlify Link**: [https://stirring-pasca-16e422.netlify.app/](https://stirring-pasca-16e422.netlify.app/)](**Netlify Link**: [https://stirring-pasca-16e422.netlify.app/](https://stirring-pasca-16e422.netlify.app/))
 
 Feel free to explore the features of Cooperative Bridge 6636. If you encounter any issues or have any feedback, you can use the "Feedback" page to share your thoughts with us.
 
