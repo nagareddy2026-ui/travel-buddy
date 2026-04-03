@@ -53,7 +53,7 @@ The frontend of Cooperative Bridge 6636 is built using the following technologie
 
 The backend server provides the necessary data and functionality for the Cooperative Bridge 6636 application. It offers various endpoints to interact with the data.
 
-**Server Link**: [https://mock-every-sunday-server.onrender.com](https://mock-every-sunday-server.onrender.com)
+**Server Link**: [https://travel-buddy-w7iv.onrender.com](https://travel-buddy-w7iv.onrender.com)
 
 **Endpoints**:
 1. `/users`: This endpoint allows interaction with user data, such as registration and authentication.
@@ -66,7 +66,7 @@ The backend server provides the necessary data and functionality for the Coopera
 
 The live version of Cooperative Bridge 6636 is deployed on Netlify. You can access the application through the following link:
 
-**Netlify Link**: [https://sparkly-salamander-87a5f4.netlify.app/](https://sparkly-salamander-87a5f4.netlify.app/)
+**Netlify Link**: [stirring-pasca-16e422.netlify.app/](stirring-pasca-16e422.netlify.app)
 
 Feel free to explore the features of Cooperative Bridge 6636. If you encounter any issues or have any feedback, you can use the "Feedback" page to share your thoughts with us.
 
