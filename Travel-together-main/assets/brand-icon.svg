@@ -1,0 +1,16 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Luggage Icon -->
+<g>
+<!-- Luggage body -->
+<rect x="25" y="30" width="50" height="55" rx="3" fill="none" stroke="#FF7C47" stroke-width="3"/>
+<!-- Luggage handle -->
+<path d="M35 30Q35 15 50 15Q65 15 65 30" fill="none" stroke="#FF7C47" stroke-width="3" stroke-linecap="round"/>
+<!-- Luggage divider line -->
+<line x1="32" y1="42" x2="68" y2="42" stroke="#FF7C47" stroke-width="2"/>
+<!-- Luggage wheels -->
+<circle cx="35" cy="88" r="3.5" fill="none" stroke="#FF7C47" stroke-width="2"/>
+<circle cx="65" cy="88" r="3.5" fill="none" stroke="#FF7C47" stroke-width="2"/>
+<!-- Wheel base line -->
+<line x1="31" y1="88" x2="69" y2="88" stroke="#FF7C47" stroke-width="2"/>
+</g>
+</svg>
