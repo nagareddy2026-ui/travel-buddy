@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const sqlite3 = require('sqlite3').verbose();
+const db = require('./config/db'); // 👈 import it
 const path = require('path');
 
 const app = express();
@@ -10,19 +10,22 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors({
   origin: "https://stirring-pasca-16e422.netlify.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 
 // Database setup
-const db = new sqlite3.Database(path.join(__dirname, 'travel.db'), (err) => {
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
+
+const db = new sqlite3.Database(path.join(__dirname, '..', 'travel.db'), (err) => {
   if (err) {
     console.error('Database connection error:', err.message);
   } else {
     console.log('Connected to SQLite database');
-    initializeDatabase();
   }
 });
+
+module.exports = db;
 
 // Initialize database tables
 function initializeDatabase() {
@@ -91,7 +94,7 @@ const paymentRoutes = require('./routes/payments');
 const feedbackRoutes = require('./routes/feedback');
 const adminRoutes = require('./routes/admin');
 
-aapp.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/feedback', feedbackRoutes);
@@ -102,12 +105,10 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running' });
 });
 // Error handling middleware
-aapp.use(express.json());
+app.use(express.json());
 
-// 👇 ADD HERE
-app.get('/api', (req, res) => {
-  res.send('API is working ✅');
-});
+// then routes
+app.use('/api/auth', authRoutes);
 
 
 app.listen(PORT, () => {
