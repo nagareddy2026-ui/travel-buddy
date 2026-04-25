@@ -8,8 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
-app.use(express.json());
+app.use(cors({
+  origin: "https://stirring-pasca-16e422.netlify.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 // Database setup
 const db = new sqlite3.Database(path.join(__dirname, 'travel.db'), (err) => {
@@ -88,7 +91,7 @@ const paymentRoutes = require('./routes/payments');
 const feedbackRoutes = require('./routes/feedback');
 const adminRoutes = require('./routes/admin');
 
-app.use('/api/auth', authRoutes);
+aapp.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/feedback', feedbackRoutes);
@@ -96,14 +99,16 @@ app.use('/api/admin', adminRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'Server is running', timestamp: new Date() });
+  res.json({ status: 'Server is running' });
+});
+// Error handling middleware
+aapp.use(express.json());
+
+// 👇 ADD HERE
+app.get('/api', (req, res) => {
+  res.send('API is working ✅');
 });
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: err.message || 'Internal server error' });
-});
 
 app.listen(PORT, () => {
   console.log(`Travel-Together Backend running on port ${PORT}`);
@@ -111,3 +116,4 @@ app.listen(PORT, () => {
 });
 
 module.exports = { db };
+ 

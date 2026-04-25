@@ -1,7 +1,7 @@
 // Frontend API Configuration
 // Add this to your main.js or create a separate api.js file
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://travel-buddy-826t.onrender.com';
 
 // Store token in localStorage
 let authToken = localStorage.getItem('authToken');

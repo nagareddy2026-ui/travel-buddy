@@ -115,14 +115,14 @@ id, user_id, destination, rating, comment, created_at
 
 ### Register User
 ```bash
-curl -X POST http://localhost:5000/api/auth/register \
+curl -X POST "http://localhost:5000/api"/auth/register \
   -H "Content-Type: application/json" \
   -d "{\"username\":\"john\",\"email\":\"john@example.com\",\"password\":\"123456\"}"
 ```
 
 ### Login
 ```bash
-curl -X POST http://localhost:5000/api/auth/login \
+curl -X POST "http://stirring-pasca-16e422.netlify.app"/auth/login \
   -H "Content-Type: application/json" \
   -d "{\"email\":\"john@example.com\",\"password\":\"123456\"}"
 ```
@@ -138,7 +138,7 @@ Response:
 
 ### Create Booking (use token from login)
 ```bash
-curl -X POST http://localhost:5000/api/bookings \
+curl -X POST "http://stirring-pasca-16e422.netlify.app/"/api/bookings \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer eyJhbGc..." \
   -d "{\"destination\":\"Paris\",\"start_date\":\"2024-06-01\",\"end_date\":\"2024-06-10\",\"travelers\":2,\"total_price\":1500}"
