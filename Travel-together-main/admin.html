@@ -358,9 +358,8 @@
       9: "./assets/Avatar9.png",
       10: "./assets/Avatar10.png",
     };
-    let destinationURL =
-      "https://travel-buddy-826t.onrender.com/destinations";
-    let usersUrl = "https://travel-buddy-826t.onrender.com/users";
+    let destinationURL = "https://mock-every-sunday-server.onrender.com/destinations";
+    let usersUrl = "https://mock-every-sunday-server.onrender.com/users";
 
     let tbody = document.querySelector(".tbody");
     let viewAllUsers = document.querySelector(".viewAllUsers");
@@ -504,7 +503,7 @@
 
       deleteBtn.addEventListener("click", () => {
         fetch(`${destinationURL}/${item.id}`, {
-          method: "DELETE",
+          method: "DELETE"
         })
           .then((res) => {
             displayMessage("Destination Deleted!", "success");
@@ -532,9 +531,10 @@
       loader.style.display = "block";
       try {
         let res = await fetch(url);
-        let data = await res.json();
-        console.log(data);
-        displayUserData(data);
+        if (res.ok) {
+            let data = await res.json();
+            displayUserData(data);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -608,7 +608,7 @@
         deleteBtn.addEventListener("click", () => {
           console.log(ele.id);
           fetch(`${usersUrl}/${ele.id}`, {
-            method: "DELETE",
+            method: "DELETE"
           })
             .then((response) => {
               return response.json();
@@ -695,7 +695,7 @@
       fetch(`${destinationURL}/${JSON.parse(localStorage.getItem("id"))}`, {
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           name: city.value,
@@ -748,4 +748,3 @@
     }
   </script>
 </html>
-
