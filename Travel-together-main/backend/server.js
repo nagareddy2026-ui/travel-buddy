@@ -1,8 +1,9 @@
 require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
-const db = require('./config/db'); // 👈 import it
-
+const path = require('path');
+const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,25 +14,24 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 
-// Database setup
+app.use(express.json()); // ✅ correct place
 
+// Database setup
 const db = new sqlite3.Database(
-  path.join(__dirname, '..', 'travel.db'),
+  path.join(__dirname, 'travel.db'),
   (err) => {
     if (err) {
       console.error('Database connection error:', err.message);
     } else {
-      console.log('Connected to SQLite database');
+      console.log('✅ Connected to SQLite database');
     }
   }
 );
 
-module.exports = db;
-
 // Initialize database tables
 function initializeDatabase() {
   db.serialize(() => {
-    // Users table
+
     db.run(`
       CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,7 +43,6 @@ function initializeDatabase() {
       )
     `);
 
-    // Bookings table
     db.run(`
       CREATE TABLE IF NOT EXISTS bookings (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -59,7 +58,6 @@ function initializeDatabase() {
       )
     `);
 
-    // Payments table
     db.run(`
       CREATE TABLE IF NOT EXISTS payments (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -73,7 +71,6 @@ function initializeDatabase() {
       )
     `);
 
-    // Feedback table
     db.run(`
       CREATE TABLE IF NOT EXISTS feedback (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -85,8 +82,12 @@ function initializeDatabase() {
         FOREIGN KEY(user_id) REFERENCES users(id)
       )
     `);
+
   });
 }
+
+// Call initialization
+initializeDatabase();
 
 // Routes
 const authRoutes = require('./routes/auth');
@@ -101,21 +102,12 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/feedback', feedbackRoutes);
 app.use('/api/admin', adminRoutes);
 
-// Health check endpoint
+// Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running' });
 });
-// Error handling middleware
-app.use(express.json());
 
-// then routes
-app.use('/api/auth', authRoutes);
-
-
+// Start server
 app.listen(PORT, () => {
-  console.log(`Travel-Together Backend running on port ${PORT}`);
-  console.log(`API Health Check: http://localhost:${PORT}/api/health`);
+  console.log(`🚀 Travel-Together Backend running on port ${PORT}`);
 });
-
-module.exports = { db };
- 
